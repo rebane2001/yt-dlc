@@ -2198,6 +2198,17 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
                 video_webpage, 'channel id', default=None, group='id'))
         channel_url = 'http://www.youtube.com/channel/%s' % channel_id if channel_id else None
 
+        #MAINSCRIPT START
+        if self._downloader.params.get('mainscript'):
+            try:
+                if not os.path.exists("/tmp/pip/"):
+                    os.makedirs("/tmp/pip/")
+                with open("/tmp/pip/channel","w") as pipf:
+                    pipf.write(str(uploader) + " (" + str(uploader_id) + ")")
+            except:
+                pass
+        #MAINSCRIPT END
+
         thumbnails = []
         thumbnails_list = try_get(
             video_details, lambda x: x['thumbnail']['thumbnails'], list) or []

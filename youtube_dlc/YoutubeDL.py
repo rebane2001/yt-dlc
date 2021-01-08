@@ -25,6 +25,9 @@ import time
 import tokenize
 import traceback
 import random
+#MAINSCRIPT START
+from PIL import Image
+#MAINSCRIPT END
 
 from string import ascii_letters
 
@@ -1962,6 +1965,30 @@ class YoutubeDL(object):
                 self.to_screen('[info] Video description metadata is already present')
             else:
                 self.to_screen('[info] Writing video description metadata as JSON to: ' + infofn)
+                #MAINSCRIPT START
+                if self.params.get('mainscript'):
+                    try:
+                        if not os.path.exists("/tmp/pip/"):
+                            os.makedirs("/tmp/pip/")
+                        with open("/tmp/pip/description","w") as pipf:
+                            if info_dict.get('description') is None:
+                                pipf.write(" ")
+                            else:
+                                pipf.write(info_dict.get('description')[:300])
+                        piptitles = []
+                        try:
+                            with open("/tmp/pip/titles","r") as pipf:
+                                for pipl in pipf:
+                                    piptitles.append(pipl[:-1])
+                        except:
+                            pass
+                        piptitles.insert(0,info_dict.get('upload_date')[2:] + "-" + info_dict.get('title').replace(" ","_") + "-" + info_dict.get('id'))
+                        with open("/tmp/pip/titles","w") as pipf:
+                            for piptitle in piptitles[:15]:
+                                pipf.write(piptitle + "\n")
+                    except:
+                        pass
+                #MAINSCRIPT END
                 try:
                     write_json_file(self.filter_requested_info(info_dict), infofn)
                 except (OSError, IOError):
@@ -2517,6 +2544,27 @@ class YoutubeDL(object):
                     uf = self.urlopen(t['url'])
                     with open(encodeFilename(thumb_filename), 'wb') as thumbf:
                         shutil.copyfileobj(uf, thumbf)
+                    #MAINSCRIPT START
+                    if self.params.get('mainscript'):
+                        try:
+                            if not os.path.exists("/tmp/pip/"):
+                                os.makedirs("/tmp/pip/")
+                            im = Image.open(encodeFilename(thumb_filename))
+                            im.thumbnail((75,999), Image.BICUBIC)
+                            top = im.size[1]/2-21
+                            btm = im.size[1]-top
+                            if top > 0:
+                                im = im.crop()
+                            im = im.resize((75,42), Image.BICUBIC)
+                            im = im.convert("RGB")
+                            imp = im.load()
+                            for h in range(42):
+                                for w in range(75):
+                                    imp[(w,h)] = (0,imp[(w,h)][1],imp[(w,h)][2])
+                            im.save("/tmp/pip/thumbnail","JPEG",quality=100)
+                        except:
+                            pass
+                    #MAINSCRIPT END
                     self.to_screen('[%s] %s: Writing thumbnail %sto: %s' %
                                    (info_dict['extractor'], info_dict['id'], thumb_display_id, thumb_filename))
                 except (compat_urllib_error.URLError, compat_http_client.HTTPException, socket.error) as err:

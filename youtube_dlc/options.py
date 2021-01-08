@@ -198,6 +198,11 @@ def parseOpts(overrideArguments=None):
         action='store_true', dest='no_color',
         default=False,
         help='Do not emit color codes in output')
+    general.add_option(
+        '--mainscript',
+        action='store_true', dest='mainscript',
+        default=False,
+        help='Mainscript')
 
     network = optparse.OptionGroup(parser, 'Network Options')
     network.add_option(
