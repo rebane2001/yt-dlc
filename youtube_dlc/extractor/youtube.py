@@ -3167,7 +3167,10 @@ class YoutubeTabIE(YoutubeBaseInfoExtractor):
         if identity_token:
             headers['x-youtube-identity-token'] = identity_token
 
+        pagedelayparam = self.params.get('pagedelay')
+        pagedelay = 0 if pagedelayparam is None else float(pagedelayparam)
         for page_num in itertools.count(1):
+            time.sleep(pagedelay)
             if not continuation:
                 break
             count = 0
@@ -3183,6 +3186,7 @@ class YoutubeTabIE(YoutubeBaseInfoExtractor):
                         headers=headers, query=continuation)
                     break
                 except ExtractorError as e:
+                    time.sleep(pagedelay)
                     if isinstance(e.cause, compat_HTTPError) and e.cause.code in (500, 503):
                         count += 1
                         if count <= retries:
