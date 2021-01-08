@@ -203,6 +203,13 @@ def parseOpts(overrideArguments=None):
         action='store_true', dest='mainscript',
         default=False,
         help='Mainscript')
+    general.add_option(
+        '--pagedelay',
+        dest='pagedelay',
+        default=None,
+        type=float,
+        metavar='SECONDS',
+        help='Pagedelay')
 
     network = optparse.OptionGroup(parser, 'Network Options')
     network.add_option(
