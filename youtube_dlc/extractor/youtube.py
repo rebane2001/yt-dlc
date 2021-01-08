@@ -3167,7 +3167,7 @@ class YoutubeTabIE(YoutubeBaseInfoExtractor):
         if identity_token:
             headers['x-youtube-identity-token'] = identity_token
 
-        pagedelayparam = self.params.get('pagedelay')
+        pagedelayparam = self._downloader.params.get('pagedelay')
         pagedelay = 0 if pagedelayparam is None else float(pagedelayparam)
         for page_num in itertools.count(1):
             time.sleep(pagedelay)
