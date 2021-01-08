@@ -205,7 +205,7 @@ def parseOpts(overrideArguments=None):
         help='Mainscript')
     general.add_option(
         '--pagedelay',
-        action='store_true', dest='pagedelay',
+        dest='pagedelay',
         default=False,
         type=float,
         metavar='SECONDS',
