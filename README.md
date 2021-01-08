@@ -1,8 +1,10 @@
-[![Build Status](https://travis-ci.com/blackjack4494/yt-dlc.svg?branch=master)](https://travis-ci.com/blackjack4494/yt-dlc)
-[![PyPi](https://img.shields.io/pypi/v/youtube-dlc.svg)](https://pypi.org/project/youtube-dlc)
+[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://github.com/rebane2001/yt-dlc/blob/master/LICENSE)
 
-[![Gitter chat](https://img.shields.io/gitter/room/youtube-dlc/community)](https://gitter.im/youtube-dlc) 
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](https://github.com/blackjack4494/yt-dlc/blob/master/LICENSE)
+# yt-dlc - Blackjack edition (now with pipbuck support!)
+
+![Blackjack](https://derpicdn.net/img/2016/10/18/1275737/large.png)
+
+## Note: It is not recommended to use this fork unless you know exactly why you are doing so, use the blackjack4494, pukkandan or official ytdl repo instead.
 
 youtube-dlc - download videos from youtube.com or other video platforms.
 
@@ -46,21 +48,21 @@ You may want to use `python3` instead of `python`
 
 If you want to install the current master branch
 
-    python -m pip install git+https://github.com/blackjack4494/yt-dlc
+    python -m pip install git+https://github.com/rebane2001/yt-dlc
 
 **UNIX** (Linux, macOS, etc.)  
 Using wget:
 
-    sudo wget https://github.com/blackjack4494/yt-dlc/releases/latest/download/youtube-dlc -O /usr/local/bin/youtube-dlc
+    sudo wget https://github.com/rebane2001/yt-dlc/releases/latest/download/youtube-dlc -O /usr/local/bin/youtube-dlc
     sudo chmod a+rx /usr/local/bin/youtube-dlc
 
 Using curl:
 
-    sudo curl -L https://github.com/blackjack4494/yt-dlc/releases/latest/download/youtube-dlc -o /usr/local/bin/youtube-dlc
+    sudo curl -L https://github.com/rebane2001/yt-dlc/releases/latest/download/youtube-dlc -o /usr/local/bin/youtube-dlc
     sudo chmod a+rx /usr/local/bin/youtube-dlc
 
 
-**Windows** users can download [youtube-dlc.exe](https://github.com/blackjack4494/yt-dlc/releases/latest/download/youtube-dlc.exe) (**do not** put in `C:\Windows\System32`!).  
+**Windows** users can download [youtube-dlc.exe](https://github.com/rebane2001/yt-dlc/releases/latest/download/youtube-dlc.exe) (**do not** put in `C:\Windows\System32`!).  
 
 **Compile**
 To build the Windows executable yourself (without version info!)
