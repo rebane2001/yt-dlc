@@ -2386,6 +2386,8 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
 
         if ytplayer_config:
             automatic_captions = self.extract_automatic_captions(video_id, player_response, ytplayer_config)
+        else:
+            automatic_captions = {}
 
         video_duration = try_get(
             video_info, lambda x: int_or_none(x['length_seconds'][0]))
