@@ -2384,10 +2384,13 @@ class YoutubeIE(YoutubeBaseInfoExtractor):
         video_subtitles = self.extract_subtitles(
             video_id, video_webpage, has_live_chat_replay)
 
-        if ytplayer_config:
+        automatic_captions = {}
+        try:
             automatic_captions = self.extract_automatic_captions(video_id, player_response, ytplayer_config)
-        else:
-            automatic_captions = {}
+        except:
+            #TODO: Add error logging here
+            pass
+
 
         video_duration = try_get(
             video_info, lambda x: int_or_none(x['length_seconds'][0]))
